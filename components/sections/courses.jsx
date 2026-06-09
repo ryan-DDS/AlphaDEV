@@ -80,14 +80,25 @@ const cursos = [
   },
 ];
 
+const tagStyles = {
+  GRATUITO: "border-emerald-500/60 text-emerald-400",
+  "MAIS VENDIDO": "border-amber-500/60 text-amber-400",
+  LANÇAMENTO: "border-amber-500/60 text-amber-400",
+  "ÚLTIMOS DIAS": "border-violet-500 text-violet-400",
+  "VAGAS LIMITADAS": "border-violet-500 text-violet-400",
+};
+
 export default function Courses() {
   const [mostrarTodos, setMostrarTodos] = useState(false);
   const cursosVisiveis = mostrarTodos ? cursos : cursos.slice(0, 6);
 
   return (
-    <section className="bg-linear-to-br from-(--color-1)/90 to-20% to-white">
+    <section className="bg-gradient-to-br from-[#12012a] via-[#0d0d0d] to-[#1a0a2e]">
       {/* Banner */}
-      <div className="relative w-full h-96 overflow-hidden">
+      <div className="relative w-full h-96 overflow-hidden bg-gradient-to-br from-[#2d0a5c] via-[#1a0530] to-[#0a0a0a]">
+        <div className="absolute top-[-60px] right-[-60px] w-72 h-72 rounded-full bg-violet-700/10 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-40px] left-[30%] w-52 h-52 rounded-full bg-purple-600/10 blur-3xl pointer-events-none" />
+
         <div className="absolute bottom-0 right-0 z-20 h-full flex items-start">
           <Image
             src="/images/programador.png"
@@ -97,34 +108,40 @@ export default function Courses() {
             className="object-contain"
           />
         </div>
+
         <div className="relative z-20 flex flex-col justify-center h-full pl-60 w-400">
-          <h1 className="text-black text-5xl font-bold mb-6 mt-10">
+          <h1 className="text-white text-5xl font-bold mb-6 mt-10">
             Escolha por onde começar a <br />
-            <span className="text-sky-500">transformar</span> sua carreira
+            <span className="text-violet-400">transformar</span> sua carreira
           </h1>
-          <h2 className="text-gray-800 text-2xl font-semibold mb-4">
+          <h2 className="text-purple-300 text-2xl font-semibold mb-4">
             Cursos e Formações em destaque
           </h2>
-          <p className="text-gray-500 text-sm max-w-xl">
+          <p className="text-gray-400 text-sm max-w-xl">
             Inteligência Artificial, Programação e Produto. Confira a melhor
             opção para o seu momento de vida e objetivos de carreira.
           </p>
         </div>
       </div>
 
+      {/* Divisor */}
+      <div className="h-px mx-16 bg-gradient-to-r from-transparent via-violet-800 to-transparent" />
+
       {/* Cards */}
       <div className="px-60 pt-8 pb-4 grid grid-cols-3 gap-6">
         {cursosVisiveis.map((curso, i) => (
           <div
             key={i}
-            className="bg-white rounded-xl p-6 flex flex-col gap-4 border-2 hover:shadow-md border-gray-200 hover:border-sky-400 transition-all duration-300 hover:translate-y-[-5px]"
+            className="bg-[#1a1a2e] rounded-xl p-6 flex flex-col gap-4 border-2 border-[#2d1b4e] hover:border-violet-600 hover:shadow-[0_8px_24px_#7c3aed22] transition-all duration-300 hover:translate-y-[-5px]"
           >
             {curso.tags.length > 0 && (
               <div className="flex gap-2 flex-wrap">
                 {curso.tags.map((tag, j) => (
                   <span
                     key={j}
-                    className="text-[10px] font-bold tracking-widest border border-sky-500 text-sky-500 px-2 py-0.5 rounded-full"
+                    className={`text-[10px] font-bold tracking-widest border px-2 py-0.5 rounded-full ${
+                      tagStyles[tag] ?? "border-violet-500 text-violet-400"
+                    }`}
                   >
                     {tag}
                   </span>
@@ -133,23 +150,23 @@ export default function Courses() {
             )}
             <div className="flex justify-between gap-4">
               <div className="flex flex-col gap-2">
-                <h3 className="text-black font-bold text-base leading-snug">
+                <h3 className="text-gray-100 font-bold text-base leading-snug">
                   {curso.titulo}
                 </h3>
-                <p className="text-gray-400 text-xs">{curso.info}</p>
+                <p className="text-gray-500 text-xs">{curso.info}</p>
               </div>
-              <div className="shrink-0 w-14 h-14 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center">
-                <span className="text-sky-500 text-xl">
+              <div className="shrink-0 w-14 h-14 rounded-xl bg-violet-950 border border-violet-800/50 flex items-center justify-center">
+                <span className="text-violet-400 text-xl">
                   <Gavel />
                 </span>
               </div>
             </div>
-            <p className="text-gray-500 text-sm leading-relaxed">
+            <p className="text-gray-400 text-sm leading-relaxed">
               {curso.desc}
             </p>
             <Link
               href={curso.href}
-              className="flex items-center gap-1 hover:bg-sky-500 rounded-[50px] p-2 text-sky-500 hover:text-white text-sm font-medium transition-all duration-300 mt-auto w-fit"
+              className="flex items-center gap-1 hover:bg-violet-600 rounded-[50px] p-2 text-violet-400 hover:text-white text-sm font-medium transition-all duration-300 mt-auto w-fit"
             >
               {curso.cta} <ArrowUpRight size={14} />
             </Link>
@@ -157,10 +174,10 @@ export default function Courses() {
         ))}
       </div>
 
-      <div className="flex justify-center mb-8 mt-4">
+      <div className="flex justify-center pb-8 mt-4">
         <button
           onClick={() => setMostrarTodos(!mostrarTodos)}
-          className="flex items-center gap-1 text-sky-500 hover:text-sky-500/70 font-medium transition-all duration-300 cursor-pointer"
+          className="flex items-center gap-1 text-violet-400 hover:text-violet-300 font-medium transition-all duration-300 cursor-pointer"
         >
           {mostrarTodos ? (
             <>
