@@ -35,20 +35,20 @@ const vantagens = [
 
 export default function Advantages() {
   return (
-    <section className="flex flex-col w-full items-center py-20 bg-linear-to-tl from-(--color-1)/40 to-50% to-white ">
+    <section className="flex flex-col w-full items-center py-20 bg-gradient-to-br from-[#12012a] via-[#0d0d0d] to-[#1a0a2e]">
       <div className="mb-14 text-center">
-        <h1 className="text-5xl font-bold">Por que escolher a AlphaDev?</h1>
-        <p className="text-gray-500 text-sm mt-4">Tudo que você precisa para evoluir na carreira em um só lugar.</p>
+        <h1 className="text-5xl font-bold text-white">Por que escolher a AlphaDev?</h1>
+        <p className="text-gray-400 text-sm mt-4">Tudo que você precisa para evoluir na carreira em um só lugar.</p>
       </div>
 
       <div className="grid grid-cols-2 gap-6 px-60 w-full">
         {vantagens.map((v, i) => (
-          <div key={i} className="group bg-white flex flex-col gap-4 p-6 border-2 border-gray-200 rounded-xl hover:shadow-md hover:border-sky-400 hover:-translate-y-1 transition-all duration-300">
-            <div className="w-12 h-12 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-500">
+          <div key={i} className="group bg-white/5 flex flex-col gap-4 p-6 border border-white/10 rounded-xl hover:border-purple-500 hover:-translate-y-1 transition-all duration-300">
+            <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400">
               {v.icone}
             </div>
-            <h3 className="text-lg font-bold text-black group-hover:text-sky-500 transition-colors duration-300">{v.titulo}</h3>
-            <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>
+            <h3 className="text-lg font-bold text-white group-hover:text-purple-400 transition-colors duration-300">{v.titulo}</h3>
+            <p className="text-gray-400 text-sm leading-relaxed">{v.desc}</p>
           </div>
         ))}
       </div>

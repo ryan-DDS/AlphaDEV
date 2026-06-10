@@ -22,12 +22,12 @@ export default function Header() {
   const [openPerfis, setOpenPerfis] = useState(false);
 
   return (
-    <header className="fixed top-7 left-1/2 -translate-x-1/2 justify-center rounded-[50px] z-50 px-20 grid grid-cols-3 items-center h-16 w-10/12 bg-white/90 backdrop-blur-lg border border-gray-300">
+    <header className="fixed top-7 left-1/2 -translate-x-1/2 justify-center rounded-[50px] z-50 px-20 grid grid-cols-3 items-center h-16 w-10/12 bg-gray-900/70 backdrop-blur-md border border-(--color-1)">
       {/* Logo */}
       <div className="flex items-center gap-2">
         <Link href="#">
           <Image
-            src="/images/alphadev-removed.png"
+            src="/images/alphadev1.png"
             alt="Logo"
             width={150}
             height={60}
@@ -36,7 +36,7 @@ export default function Header() {
       </div>
 
       {/* Nav */}
-      <div className="flex justify-center gap-6 text-gray-500">
+      <div className="flex justify-center gap-6 text-gray-300">
         {/* Cursos com dropdown */}
         <div className="relative">
           <Button

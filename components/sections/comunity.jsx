@@ -5,11 +5,11 @@ import { UsersRound } from "lucide-react";
 export default function Learning() {
   return (
     <section className="flex" >
-      <div className="px-90 bg-gray-100 h-27 w-full">
+      <div className="px-90 bg-gray-900 h-27 w-full">
         <div className="flex items-start mt-0">
-          <h2 className="text-xl font-bold">
+          <h2 className="text-xl text-white font-bold">
             Conhece a comunidade AlphaDev?{" "}
-            <span className="font-normal text-gray-900">
+            <span className="font-normal text-white">
               Participe de desafios, eventos, mentorias e networking com outros
               desenvolvedores.
             </span>

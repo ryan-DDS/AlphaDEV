@@ -18,7 +18,7 @@ const tools = [
 
 export default function Tools() {
   return (
-    <section className="bg-gradient-to-tl from-[#12012a] via-[#0d0d0d] to-[#1a0a2e]">
+    <section className="bg-gradient-to-tr from-[#12012a] via-[#0d0d0d] to-[#1a0a2e]">
       <div className="flex flex-col justify-center items-center mb-10">
         <div className="h-px w-10/12 bg-violet-800/40 rounded-sm" />
       </div>

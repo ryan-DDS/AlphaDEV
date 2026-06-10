@@ -96,12 +96,10 @@ export default function Courses() {
     <section className="bg-gradient-to-br from-[#12012a] via-[#0d0d0d] to-[#1a0a2e]">
       {/* Banner */}
       <div className="relative w-full h-96 overflow-hidden bg-gradient-to-br from-[#2d0a5c] via-[#1a0530] to-[#0a0a0a]">
-        <div className="absolute top-[-60px] right-[-60px] w-72 h-72 rounded-full bg-violet-700/10 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-[-40px] left-[30%] w-52 h-52 rounded-full bg-purple-600/10 blur-3xl pointer-events-none" />
 
         <div className="absolute bottom-0 right-0 z-20 h-full flex items-start">
           <Image
-            src="/images/programador.png"
+            src="/images/programador3.png"
             alt="Programador"
             width={700}
             height={400}

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --color-1: rgb(37 99 235);
+  --color-1: rgb(124, 58, 237);
 }
 
 @layer base {

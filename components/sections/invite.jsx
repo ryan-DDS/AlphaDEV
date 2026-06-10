@@ -5,7 +5,7 @@ export default function Invite() {
     <section
       className="flex h-200 flex-col"
       style={{
-        backgroundImage: "url('/images/grade.png')",
+        backgroundImage: "url('/images/grade-roxa.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

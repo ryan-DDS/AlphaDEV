@@ -18,7 +18,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative flex flex-col justify-center px-60 z-10">
           <h1 className="text-6xl font-bold text-white leading-tight mb-4">
-            Seja <span className="text-sky-500">relevante</span> na era da{" "}
+            Seja <span className="text-(--color-1)">relevante</span> na era da{" "}
             <br /> Inteligência Artificial
           </h1>
           <p className="text-lg text-gray-200 mb-8">
@@ -36,17 +36,16 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Barra azul fora do overlay */}
-      <div className="px-90 w-full h-28 bg-gray-100 flex">
+      <div className="px-90 w-full h-28 bg-gray-900 flex">
         <div className="flex items-center gap-4 mt-6">
           <Image
-            src="/images/alphadev-removed.png"
+            src="/images/alphadev1.png"
             alt="Logo"
             width={120}
             height={60}
           />
-          <div className="border-l-2 rounded-sm border-blue-500 h-10"></div>
-          <h1 className="text-lg font-semibold text-black/90">Comunidade</h1>
+          <div className="w-0.5 rounded-sm bg-purple-500 h-10"></div>
+          <h1 className="text-lg font-semibold text-gray-300">Comunidade</h1>
         </div>
       </div>
     </section>
