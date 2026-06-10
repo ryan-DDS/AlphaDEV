@@ -2,7 +2,7 @@ const tools = [
   { nome: "Engenharia de Prompt" },
   { nome: "ChatGPT" },
   { nome: "Gemini" },
-  { nome: "JusIA" },
+  { nome: "Dola AI" },
   { nome: "Veo3" },
   { nome: "Front-End" },
   { nome: "Back-End" },
@@ -18,11 +18,11 @@ const tools = [
 
 export default function Tools() {
   return (
-    <section className="bg-gradient-to-tr from-[#12012a] via-[#0d0d0d] to-[#1a0a2e]">
+    <section className="pb-10 bg-gradient-to-tr from-[#12012a] via-[#0d0d0d] to-[#1a0a2e] pb-10">
       <div className="flex flex-col justify-center items-center mb-10">
         <div className="h-px w-10/12 bg-violet-800/40 rounded-sm" />
       </div>
-      <div className="relative z-20 flex flex-col justify-center h-full pl-60 max-w-3xl">
+      <div className="relative z-20 flex flex-col justify-center h-full pl-60 pt-10">
         <h2 className="text-purple-300 text-2xl font-semibold mb-4">
           Habilidades e ferramentas em alta
         </h2>

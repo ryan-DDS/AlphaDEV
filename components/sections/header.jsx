@@ -22,7 +22,7 @@ export default function Header() {
   const [openPerfis, setOpenPerfis] = useState(false);
 
   return (
-    <header className="fixed top-7 left-1/2 -translate-x-1/2 justify-center rounded-[50px] z-50 px-20 grid grid-cols-3 items-center h-16 w-10/12 bg-gray-900/70 backdrop-blur-md border border-(--color-1)">
+    <header className="fixed top-7 left-1/2 -translate-x-1/2 justify-center rounded-[50px] z-50 px-20 grid grid-cols-3 items-center h-16 w-10/12 bg-gray-900/70 backdrop-blur-md border border-violet-950">
       {/* Logo */}
       <div className="flex items-center gap-2">
         <Link href="#">
@@ -48,16 +48,16 @@ export default function Header() {
           </Button>
 
           {openCursos && (
-            <div className="absolute top-10 left-0 w-175 bg-white border-gray-200 border rounded-xl p-6 shadow-xl z-50">
+            <div className="absolute top-10 left-0 w-175 bg-gray-900 border-violet-900 border rounded-xl p-6 shadow-xl z-50">
               <div className="grid grid-cols-4 gap-6">
-                <p className="text-black font-semibold">Principais cursos</p>
+                <p className="text-white font-semibold">Principais cursos</p>
                 {cursos.map((col, i) => (
                   <div key={i} className="flex flex-col gap-4">
                     {col.map((item, j) => (
                       <Link
                         key={j}
                         href="#"
-                        className="text-black text-sm hover:text-(--color-1) transition-colors underline-animation"
+                        className="text-white text-sm hover:text-(--color-1) transition-colors underline-animation"
                       >
                         {item}
                       </Link>
@@ -92,14 +92,14 @@ export default function Header() {
           </Button>
 
           {openPerfis && (
-            <div className="absolute top-10 right-0 w-50 bg-white border border-gray-200 rounded-xl p-4 shadow-xl z-50">
-              <p className="text-black font-semibold mb-3">Qual seu perfil?</p>
+            <div className="absolute top-10 right-0 w-50 bg-gray-900 border border-violet-900 rounded-xl p-4 shadow-xl z-50">
+              <p className="text-white font-semibold mb-3">Qual seu perfil?</p>
               <div className="flex flex-col gap-3">
                 {perfis.map((item, i) => (
                   <Button
                     key={i}
                     href={item.href}
-                    className="text-gray-600 text-sm hover:text-(--color-1)"
+                    className="text-gray-200 text-sm hover:text-(--color-1)"
                   >
                     {item.nome}
                   </Button>

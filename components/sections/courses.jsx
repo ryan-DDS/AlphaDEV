@@ -97,16 +97,6 @@ export default function Courses() {
       {/* Banner */}
       <div className="relative w-full h-96 overflow-hidden bg-gradient-to-br from-[#2d0a5c] via-[#1a0530] to-[#0a0a0a]">
 
-        <div className="absolute bottom-0 right-0 z-20 h-full flex items-start">
-          <Image
-            src="/images/programador3.png"
-            alt="Programador"
-            width={700}
-            height={400}
-            className="object-contain"
-          />
-        </div>
-
         <div className="relative z-20 flex flex-col justify-center h-full pl-60 w-400">
           <h1 className="text-white text-5xl font-bold mb-6 mt-10">
             Escolha por onde começar a <br />

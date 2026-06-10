@@ -10,7 +10,7 @@ export default function Hero() {
       <div
         className="relative flex-1 flex items-center justify-start"
         style={{
-          backgroundImage: "url('/images/banner.png')",
+          backgroundImage: "url('/images/bannerroxo.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

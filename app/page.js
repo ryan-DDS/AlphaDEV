@@ -5,6 +5,7 @@ import Courses from "@/components/sections/courses";
 import Tools from "@/components/sections/tools";
 import Invite from "@/components/sections/invite";
 import Advantages from "@/components/sections/advantages";
+import Bundles from "@/components/sections/bundles";
 
 export default function Home() {
   return (
@@ -15,7 +16,8 @@ export default function Home() {
         <Courses />
         <Tools />
         <Invite />
-        <Advantages/>
+        <Advantages />
+        <Bundles />
       </main>
   );
 }
