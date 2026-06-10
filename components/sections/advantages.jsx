@@ -120,22 +120,48 @@ export default function Advantages() {
 
       {/* Navegação */}
       <div className="flex items-center gap-4 mt-10">
-        <button
-          onClick={() => setPage((p) => Math.max(0, p - 1))}
-          disabled={page === 0}
-          className="w-11 h-11 rounded-full border border-white/15 bg-purple-500/15 text-purple-400 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center transition-all duration-200 hover:bg-purple-500/30"
-        >
-          <ChevronLeft size={20} />
-        </button>
+  {/* Seta para Esquerda */}
+  <button
+    onClick={() => setPage((p) => Math.max(0, p - 1))}
+    disabled={page === 0}
+    className="w-11 h-11 rounded-full border border-white/15 bg-purple-500/15 text-purple-400 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center transition-all duration-200 hover:bg-purple-500/30"
+  >
+    <ChevronLeft size={20} />
+  </button>
 
-        <button
-          onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
-          disabled={page === totalPages - 1}
-          className="w-11 h-11 rounded-full border border-white/15 bg-purple-500/15 text-purple-400 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center transition-all duration-200 hover:bg-purple-500/30"
-        >
-          <ChevronRight size={20} />
-        </button>
-      </div>
+  {/* Botão 1 */}
+  <button
+    onClick={() => setPage(0)}
+    className={`w-11 h-11 rounded-full border transition-all duration-200 flex items-center justify-center text-sm font-medium
+      ${page === 0 
+        ? "border-purple-500 bg-purple-500 text-white" 
+        : "border-white/15 bg-purple-500/5 text-purple-400 hover:bg-purple-500/20"
+      }`}
+  >
+    1
+  </button>
+
+  {/* Botão 2 */}
+  <button
+    onClick={() => setPage(1)}
+    className={`w-11 h-11 rounded-full border transition-all duration-200 flex items-center justify-center text-sm font-medium
+      ${page === 1 
+        ? "border-purple-500 bg-purple-500 text-white" 
+        : "border-white/15 bg-purple-500/5 text-purple-400 hover:bg-purple-500/20"
+      }`}
+  >
+    2
+  </button>
+
+  {/* Seta para Direita */}
+  <button
+    onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+    disabled={page === totalPages - 1}
+    className="w-11 h-11 rounded-full border border-white/15 bg-purple-500/15 text-purple-400 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center transition-all duration-200 hover:bg-purple-500/30"
+  >
+    <ChevronRight size={20} />
+  </button>
+</div>
     </section>
   );
 }
