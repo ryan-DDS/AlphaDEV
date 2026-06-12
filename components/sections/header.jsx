@@ -11,15 +11,9 @@ const cursos = [
   ["Curso Full-Stack", "Curso JavaScript", "Veo3"],
 ];
 
-const perfis = [
-  { nome: "Administrador", href: "/admin" },
-  { nome: "Professor", href: "/prof" },
-  { nome: "Aluno", href: "/aluno" },
-];
 
 export default function Header() {
   const [openCursos, setOpenCursos] = useState(false);
-  const [openPerfis, setOpenPerfis] = useState(false);
 
   return (
     <header className="fixed top-7 left-1/2 -translate-x-1/2 justify-center rounded-[50px] z-50 px-20 grid grid-cols-3 items-center h-16 w-10/12 bg-gray-900/70 backdrop-blur-md border border-violet-950">
@@ -79,37 +73,17 @@ export default function Header() {
 
       {/* Botões */}
       <div className="flex justify-end gap-4 items-center">
-        {/* Login com dropdown de perfis */}
         <div className="relative">
+          <Link href="/login">
           <Button
-            onClick={() => setOpenPerfis(!openPerfis)}
-            className={
-              openPerfis ? "!bg-(--color-1) !text-white" : "text-(--color-1)"
-            }
+            className="text-gray-300 px-4 hover:px-4"
           >
-            Login{" "}
-            {openPerfis ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+            Login
           </Button>
-
-          {openPerfis && (
-            <div className="absolute top-10 right-0 w-50 bg-gray-900 border border-violet-900 rounded-xl p-4 shadow-xl z-50">
-              <p className="text-white font-semibold mb-3">Qual seu perfil?</p>
-              <div className="flex flex-col gap-3">
-                {perfis.map((item, i) => (
-                  <Button
-                    key={i}
-                    href={item.href}
-                    className="text-gray-200 text-sm hover:text-(--color-1)"
-                  >
-                    {item.nome}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          )}
+          </Link>
         </div>
         <Link
-          href="#"
+          href="/cadastro"
           className="justify-center items-center px-6 py-2 bg-(--color-1) cursor-pointer text-white rounded-[50px] hover:bg-(--color-1)/70 transition-all duration-300 flex gap-1.5"
         >
           Cadastro
