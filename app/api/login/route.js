@@ -1,7 +1,7 @@
 import pool from "@/lib/db";
 import bcrypt from "bcryptjs"; 
 import { gerarToken } from "@/lib/auth"; 
-import { cookies } from "next/headers"; // 1. Adicionado: Import do gerenciador de cookies do Next
+import { cookies } from "next/headers";
 
 export async function POST(req) {
   try {
@@ -26,21 +26,35 @@ export async function POST(req) {
     // Gerando o token com os dados necessários
     const token = await gerarToken({ 
       id: user.id, 
-      nome: user.nome, // Adicionei o nome aqui para o dashboard conseguir exibir depois!
+      nome: user.nome, 
       perfil: user.perfil 
     });
 
-    // 2. O SEGREDO: Gravando o token de forma segura nos cookies do navegador
+    // Gravando o token nos cookies
     const cookieStore = await cookies();
     cookieStore.set("token", token, {
-      httpOnly: true, // Segurança contra invasões via scripts front-end
-      secure: process.env.NODE_ENV === "production", // Só roda em HTTPS quando estiver online
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
-      path: "/", // Torna o cookie visível para todas as rotas do projeto (ex: /dashboard)
-      maxAge: 60 * 60 * 24 // Duração de 1 dia ativo no navegador
+      path: "/",
+      maxAge: 60 * 60 * 24
     });
 
-    // 3. Retorna os dados normalmente para o frontend
+    const forwarded = req.headers.get("x-forwarded-for");
+    const ip = forwarded ? forwarded.split(',')[0] : req.socket?.remoteAddress;
+
+    // 🚨 AGORA SIM: Enviando as colunas certas para a sua tabela
+    try {
+      await pool.query(
+        "INSERT INTO log_acesso (usuario_id, usuario_nome, acao, ip) VALUES ($1, $2, $3, $4)",
+        [user.id, user.nome, "login", ip]
+      );
+    } catch (e) {
+      // Se der erro aqui, você verá o motivo real no terminal do VS Code
+      console.error("Erro interno ao tentar salvar o Log:", e.message);
+    }
+
+    // Retorna os dados normalmente para o frontend
     return Response.json({ 
       token,
       user: {
@@ -52,7 +66,7 @@ export async function POST(req) {
     });
 
   } catch (error) {
-    console.error("Erro no login:", error);
+    console.error("Erro fatal no login:", error);
     return Response.json({ error: "Erro interno no servidor" }, { status: 500 });
   }
 }

@@ -3,10 +3,10 @@ import pool from "@/lib/db";
 // Atualizar Usuário
 export async function PUT(req, { params }) {
   try {
-    // 1. No Next.js, desestruturamos o params direto no argumento da função
+    // 1. No Next.js, desestruturamos o params
     const { id } = await params;
 
-    // 2. Recebe os dados do corpo da requisição (incluindo o perfil que criamos)
+    // 2. Recebe os dados do corpo da requisição
     const { nome, email, perfil } = await req.json();
 
     // Validação básica
@@ -17,7 +17,7 @@ export async function PUT(req, { params }) {
       );
     }
 
-    // 3. Executa o UPDATE usando as variáveis corretas
+    // 3. Executa o UPDATE
     const result = await pool.query(
       `UPDATE usuarios 
        SET nome = $1, email = $2, perfil = $3 

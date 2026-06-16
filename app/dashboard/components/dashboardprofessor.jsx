@@ -1,23 +1,82 @@
+"use client";
+import { useState, useEffect } from "react";
+
 export default function DashboardProfessor({ user }) {
+  const [usuarios, setUsuarios] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+  // Estados para manipular os dados
+  const [idEdicao, setIdEdicao] = useState(null);
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [perfil, setPerfil] = useState("aluno");
+
+  const handleLogout = async () => {
+    await signOut({ callbackUrl: "/login" }); // Redireciona para sua tela de login
+  };
+
+  const API_URL = "/api/usuarios";
+
+  const carregarUsuarios = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch(API_URL);
+      const data = await res.json();
+      setUsuarios(data);
+    } catch (error) {
+      console.error("Erro ao carregar:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => { carregarUsuarios(); }, []);
+
+  // Lógica de Salvar (POST ou PUT)
+  const handleSalvar = async (e) => {
+    e.preventDefault();
+    const method = idEdicao ? "PUT" : "POST";
+    const url = idEdicao ? `${API_URL}/${idEdicao}` : API_URL;
+
+    await fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nome, email, perfil }),
+    });
+
+    setIdEdicao(null);
+    setNome(""); setEmail("");
+    carregarUsuarios();
+  };
+
   return (
     <div className="p-8 bg-gray-900 min-h-screen text-white">
-      <h1 className="text-3xl font-bold mb-4 text-purple-400">Painel do Professor</h1>
-      <p className="text-gray-400 mb-6">Olá, Prof. {user.nome}!</p>
+      {/* SEU DESIGN AQUI */}
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="p-6 bg-gray-800 rounded-lg border border-purple-500/20">
-          <h2 className="text-xl font-semibold mb-2">Gerenciar Alunos</h2>
-          <p className="text-gray-400">42 alunos ativos nas suas turmas.</p>
-        </div>
-        <div className="p-6 bg-gray-800 rounded-lg border border-purple-500/20">
-          <h2 className="text-xl font-semibold mb-2">Lançar Notas</h2>
-          <p className="text-gray-400">Cadastre notas e frequências.</p>
-        </div>
-        <div className="p-6 bg-gray-800 rounded-lg border border-purple-500/20">
-          <h2 className="text-xl font-semibold mb-2">Criar Conteúdo</h2>
-          <p className="text-purple-400 font-bold">+ Nova Aula</p>
-        </div>
-      </div>
+      {/* Tabela simplificada: Apenas exibição e Edição */}
+      {/* (Não inclua o botão de Excluir aqui) */}
+      
+      <table className="w-full">
+        {/* ... headers ... */}
+        <tbody>
+          {usuarios.map((u) => (
+            <tr key={u.id}>
+              <td>{u.nome}</td>
+              <td>{u.email}</td>
+              <td>
+                <button onClick={() => {
+                  setIdEdicao(u.id);
+                  setNome(u.nome);
+                  setEmail(u.email);
+                  setPerfil(u.perfil);
+                }}>
+                  Editar
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

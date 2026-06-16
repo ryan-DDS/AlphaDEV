@@ -8,7 +8,7 @@ export default function Cadastro() {
   const router = useRouter(); // 2. Inicializando o roteador do Next.js
   const [form, setForm] = useState({
     nome: "",
-    perfil: "",
+    perfil: "aluno",
     email: "",
     senha: "",
     confirmarSenha: "",
@@ -24,7 +24,7 @@ export default function Cadastro() {
     }
 
     // validação de campos vazios
-    if (!form.nome || !form.perfil || !form.email || !form.senha) {
+    if (!form.nome || !form.email || !form.senha) {
       alert("Preencha todos os campos!");
       return;
     }
