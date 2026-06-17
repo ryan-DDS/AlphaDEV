@@ -1,9 +1,16 @@
+// "use client" avisa que esta parte da página tem cliques e botões dinâmicos que rodam no navegador da criança.
 "use client";
+
+// Importamos o useState para saber se mostramos todos os cursos ou só alguns.
 import { useState } from "react";
+
+// Importamos a tag "Link" para navegar sem travar.
 import Link from "next/link";
-import Image from "next/image";
+
+// Importamos alguns ícones legais da biblioteca Lucide.
 import { ArrowUpRight, Gavel, Plus, Minus } from "lucide-react";
 
+// Uma listona de objetos (cursos) contendo informações sobre os cursos da AlphaDev.
 const cursos = [
   {
     tags: ["ÚLTIMOS DIAS", "VAGAS LIMITADAS"],
@@ -80,6 +87,8 @@ const cursos = [
   },
 ];
 
+// Um dicionário de roupas (classes CSS) para as tags.
+// Se a tag for "GRATUITO", ele pinta de verde. Se for "MAIS VENDIDO", pinta de amarelo.
 const tagStyles = {
   GRATUITO: "border-emerald-500/60 text-emerald-400",
   "MAIS VENDIDO": "border-amber-500/60 text-amber-400",
@@ -88,15 +97,21 @@ const tagStyles = {
   "VAGAS LIMITADAS": "border-violet-500 text-violet-400",
 };
 
+// Fábrica do componente Courses
 export default function Courses() {
+  // Caixinha de memória 'mostrarTodos' para ligar/desligar a visualização de toda a lista de cursos (começa como false / desligado).
   const [mostrarTodos, setMostrarTodos] = useState(false);
+
+  // Se 'mostrarTodos' for verdadeiro, a gente pega a lista de cursos inteira.
+  // Se for falso, o 'slice(0, 6)' recorta a lista para mostrar apenas os primeiros 6 cursos.
   const cursosVisiveis = mostrarTodos ? cursos : cursos.slice(0, 6);
 
   return (
+    // Seção escura com gradiente de roxo para preto
     <section className="bg-gradient-to-br from-[#12012a] via-[#0d0d0d] to-[#1a0a2e]">
-      {/* Banner */}
+      
+      {/* Banner Principal com um título chamativo */}
       <div className="relative w-full h-96 overflow-hidden bg-gradient-to-br from-[#2d0a5c] via-[#1a0530] to-[#0a0a0a]">
-
         <div className="relative z-20 flex flex-col justify-center h-full pl-60 w-400">
           <h1 className="text-white text-5xl font-bold mb-6 mt-10">
             Escolha por onde começar a <br />
@@ -112,21 +127,27 @@ export default function Courses() {
         </div>
       </div>
 
-      {/* Divisor */}
+      {/* Uma linha divisória super elegante, que começa transparente, fica roxa no meio e volta a ser transparente */}
       <div className="h-px mx-16 bg-gradient-to-r from-transparent via-violet-800 to-transparent" />
 
-      {/* Cards */}
+      {/* Caixa em grade para mostrar os cartões de cursos */}
       <div className="px-60 pt-8 pb-4 grid grid-cols-3 gap-6">
+        
+        {/* Percorremos a lista recortada 'cursosVisiveis' */}
         {cursosVisiveis.map((curso, i) => (
           <div
             key={i}
             className="bg-[#1a1a2e] rounded-xl p-6 flex flex-col gap-4 border-2 border-[#2d1b4e] hover:border-violet-600 hover:shadow-[0_8px_24px_#7c3aed22] transition-all duration-300 hover:translate-y-[-5px]"
           >
+            {/* Se o curso tiver alguma tag cadastrada (curso.tags.length > 0): */}
             {curso.tags.length > 0 && (
               <div className="flex gap-2 flex-wrap">
+                {/* Outro loop (map)! Percorremos as tags deste curso específico para criar cracházinhos */}
                 {curso.tags.map((tag, j) => (
                   <span
                     key={j}
+                    // Procuramos a cor da tag no nosso dicionário 'tagStyles'.
+                    // Se não achar nada (??), usa a borda roxa padrão.
                     className={`text-[10px] font-bold tracking-widest border px-2 py-0.5 rounded-full ${
                       tagStyles[tag] ?? "border-violet-500 text-violet-400"
                     }`}
@@ -136,6 +157,8 @@ export default function Courses() {
                 ))}
               </div>
             )}
+            
+            {/* Título do curso e o ícone de martelinho (Gavel) */}
             <div className="flex justify-between gap-4">
               <div className="flex flex-col gap-2">
                 <h3 className="text-gray-100 font-bold text-base leading-snug">
@@ -149,9 +172,13 @@ export default function Courses() {
                 </span>
               </div>
             </div>
+            
+            {/* Descrição do curso */}
             <p className="text-gray-400 text-sm leading-relaxed">
               {curso.desc}
             </p>
+
+            {/* Link para começar o curso */}
             <Link
               href={curso.href}
               className="flex items-center gap-1 hover:bg-violet-600 rounded-[50px] p-2 text-violet-400 hover:text-white text-sm font-medium transition-all duration-300 mt-auto w-fit"
@@ -162,11 +189,14 @@ export default function Courses() {
         ))}
       </div>
 
+      {/* Botão de Ver Mais / Ver Menos */}
       <div className="flex justify-center pb-8 mt-4">
         <button
+          // Ao clicar, a gente inverte o valor da caixinha (se era true vira false, se era false vira true!)
           onClick={() => setMostrarTodos(!mostrarTodos)}
           className="flex items-center gap-1 text-violet-400 hover:text-violet-300 font-medium transition-all duration-300 cursor-pointer"
         >
+          {/* Mostra textos e setas diferentes de acordo com o estado 'mostrarTodos' */}
           {mostrarTodos ? (
             <>
               Ver Menos <Minus size={14} />
